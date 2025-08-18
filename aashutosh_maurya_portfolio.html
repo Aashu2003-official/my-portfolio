@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aashutosh Maurya — AI & Game Dev Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0f1e;
+      --bg2:#03060f;
+      --ink:#eaf3ff;
+      --muted:#9fb3c8;
+      --accent:#2e7cff;
+      --accent2:#00b3ff;
+      --glass:rgba(255,255,255,.04);
+      --card:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      --ring: radial-gradient(60% 60% at 50% 50%, rgba(46,124,255,.25) 0%, rgba(0,0,0,0) 70%);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 800px at 10% 20%, #0f1e3d 0%, var(--bg) 40%, var(--bg2) 100%);color:var(--ink);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+    a{color:var(--ink);text-decoration:none}
+    h1,h2,h3{font-family:Montserrat, Inter, sans-serif;letter-spacing:.5px}
+    .wrap{max-width:1200px;margin:0 auto;padding:28px}
+    /* --- HERO ---------------------------------------------------- */
+    .hero{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:40px;
+      align-items:center;
+      min-height:72vh;
+    }
+    .hero-title{
+      font-size: clamp(28px, 5vw, 54px);
+      font-weight:800;
+      text-transform:uppercase;
+    }
+    .hero-sub{font-size:clamp(14px,2.2vw,18px); opacity:.9; margin:.5rem 0 1.2rem}
+    .pill{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg, rgba(46,124,255,.25), rgba(0,179,255,.25));border:1px solid rgba(255,255,255,.12);padding:10px 16px;border-radius:999px}
+    .contact{display:flex;flex-wrap:wrap;gap:14px;margin-top:16px}
+    .contact a{background:var(--glass);border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:12px;display:inline-flex;align-items:center;gap:10px;color:var(--muted)}
+    .cta{margin-top:18px;display:inline-block;background:linear-gradient(90deg, var(--accent), var(--accent2));color:white;padding:13px 20px;border-radius:14px;font-weight:600;box-shadow:0 10px 30px rgba(46,124,255,.35)}
+    .hud{
+      position:relative;
+      aspect-ratio:1/1;
+      width:min(520px, 90%);
+      margin-inline:auto;
+      border-radius:50%;
+      background:
+        radial-gradient(closest-side, rgba(255,255,255,.02) 0 60%, transparent 60%),
+        var(--ring);
+      display:grid;
+      place-items:center;
+      box-shadow:inset 0 0 60px rgba(46,124,255,.15), 0 0 120px rgba(0,179,255,.25);
+    }
+    .hud::before, .hud::after{
+      content:"";
+      position:absolute;inset:10%;border-radius:50%;
+      border:1px dashed rgba(174,203,255,.25);
+      filter:drop-shadow(0 0 20px rgba(46,124,255,.25));
+    }
+    .hud::after{inset:22%;border-style:solid;border-width:1px;border-color:rgba(255,255,255,.08)}
+    .brain{
+      width:38%;
+      filter:drop-shadow(0 0 12px rgba(46,124,255,.6));
+    }
+    .node{
+      position:absolute; width:14px;height:14px;border-radius:50%;
+      background:linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow:0 0 15px rgba(46,124,255,.9);
+    }
+    .node.n1{top:22%;right:8%}
+    .node.n2{bottom:18%;left:10%}
+    /* --- SECTION ------------------------------------------------- */
+    section{margin:54px 0}
+    .section-title{font-size:28px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+    .grid{display:grid;gap:18px}
+    .cols-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .cols-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+    .card{
+      background:var(--card);border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;padding:22px; backdrop-filter: blur(6px);
+    }
+    .card h3{margin:0 0 10px;font-size:20px}
+    .muted{color:var(--muted)}
+    .chip{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.03);margin:6px 6px 0 0;font-size:14px}
+    /* --- TIMELINE ----------------------------------------------- */
+    .timeline{position:relative;padding-left:26px}
+    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg, rgba(46,124,255,.6), rgba(0,179,255,.2))}
+    .t-item{position:relative;margin:0 0 16px}
+    .t-role{font-weight:600}
+    .t-meta{font-size:14px;color:var(--muted)}
+    /* --- FOOTER -------------------------------------------------- */
+    footer{margin:70px 0 30px;text-align:center;color:var(--muted)}
+    /* --- RESPONSIVE --------------------------------------------- */
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr}
+      .hud{order:-1;margin-bottom:12px}
+      .cols-2{grid-template-columns:1fr}
+      .cols-3{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 560px){
+      .cols-3{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div>
+        <div class="pill"><i class="fa-solid fa-robot"></i><span>Artificial Intelligence • Game Development</span></div>
+        <h1 class="hero-title">Aashutosh Maurya</h1>
+        <p class="hero-sub">B.Sc. (IT) Graduate focused on AI/ML, data analysis, and Unity 3D game development. I enjoy building intelligent tools and playful, polished experiences.</p>
+        <div class="contact">
+          <a href="mailto:aashuofficial2003@gmail.com"><i class="fa-solid fa-envelope"></i> aashuofficial2003@gmail.com</a>
+          <a href="tel:+919372559592"><i class="fa-solid fa-phone"></i> +91-9372559592</a>
+          <span class="contact"><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+        </div>
+        <a class="cta" href="#projects">See Projects</a>
+      </div>
+      <div class="hud" aria-hidden="true">
+        <!-- Central brain SVG -->
+        <svg class="brain" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M127 36c-36 0-59 20-67 48-20 2-34 20-34 38 0 16 10 34 28 36 4 37 33 62 73 62s69-25 73-62c18-2 28-20 28-36 0-18-14-36-34-38-8-28-31-48-67-48Z"
+                stroke="url(#g1)" stroke-width="6" />
+          <path d="M128 52v152M90 76c12 0 22 10 22 22s-10 22-22 22M166 76c-12 0-22 10-22 22s10 22 22 22M84 152c14 0 24 12 24 24s-10 20-24 20M172 152c-14 0-24 12-24 24s10 20 24 20"
+                stroke="url(#g2)" stroke-width="6" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#2E7CFF"/><stop offset="1" stop-color="#00B3FF"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#9EC8FF"/><stop offset="1" stop-color="#2E7CFF"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="node n1"></span>
+        <span class="node n2"></span>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <section>
+      <h2 class="section-title">Summary</h2>
+      <div class="card">
+        <p class="muted">
+          Motivated and results‑oriented B.Sc. (IT) graduate with hands‑on experience across AI projects and Unity game development. Strong with MS Office and data handling; eager to contribute in collaborative teams and keep learning.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills & Education -->
+    <section class="grid cols-2">
+      <div class="card">
+        <h2 class="section-title">Skills</h2>
+        <div>
+          <span class="chip">Unity 3D</span>
+          <span class="chip">Python</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Data Cleansing</span>
+          <span class="chip">MS Office</span>
+          <span class="chip">Data Entry</span>
+        </div>
+        <h3 style="margin-top:18px">Languages</h3>
+        <p class="muted">Hindi (both) • English (read/write)</p>
+        <h3 style="margin-top:18px">Certifications</h3>
+        <p class="muted">AI Tool Workshop</p>
+      </div>
+      <div class="card">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-role">B.Sc. (Information Technology) — Mumbai University</div>
+            <div class="t-meta">CGPA: 9.07</div>
+          </div>
+          <div class="t-item">
+            <div class="t-role">Class XII — Maharashtra Board</div>
+            <div class="t-meta">Year: 2021 • 79%</div>
+          </div>
+          <div class="t-item">
+            <div class="t-role">Class X — Maharashtra Board</div>
+            <div class="t-meta">Year: 2019 • 87%</div>
+          </div>
+        </div>
+        <h3 style="margin-top:14px">Achievements</h3>
+        <p class="muted">•Top 10 in class inB.Sc <br>• Department topper in school <br> • Department topper in junior college</p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid cols-3">
+        <article class="card">
+          <h3><i class="fa-solid fa-camera"></i> AI Family Photo Scanner</h3>
+          <p class="muted">Python-based tool trained on a folder of family photos to recognize and categorize members with a simple workflow.</p>
+          <p class="t-meta">July 2025</p>
+          <div>
+            <span class="chip">Python</span>
+            <span class="chip">ML</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-chart-line"></i> AI Employment Prediction</h3>
+          <p class="muted">Analyzed 2018–2025 employee data and forecasted 2026–2030 headcount with clean visualizations.</p>
+          <p class="t-meta">July 2025 – Aug 2025</p>
+          <div>
+            <span class="chip">Python</span>
+            <span class="chip">Data Viz</span>
+            <span class="chip">Forecasting</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3><i class="fa-solid fa-gamepad"></i> Dynamic Snake & Ladder + 3D Ludo</h3>
+          <p class="muted">3D Snake & Ladder with board changes every 5 moves; multiple modes including AI opponents. Fully 3D Ludo with pieces, board, and dice.</p>
+          <p class="t-meta">Aug 2024 – Feb 2025</p>
+          <div>
+            <span class="chip">Unity 3D</span>
+            <span class="chip">C#</span>
+            <span class="chip">Game Design</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="card grid cols-2">
+        <div>
+          <p class="muted">Open to entry‑level roles and internships in AI/ML, data analysis, and Unity development.</p>
+          <p class="muted">Location: Mumbai • Ready to collaborate on exciting ideas.</p>
+        </div>
+        <div>
+          <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px">
+            <a class="cta" href="mailto:aashuofficial2003@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+            <a class="cta" href="tel:+919372559592"><i class="fa-solid fa-phone"></i> Call</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Aashutosh Maurya • Built with a sleek AI theme
+    </footer>
+  </div>
+
+  <script>
+    // Simple parallax glow on scroll
+    const hud = document.querySelector('.hud');
+    window.addEventListener('scroll', () => {
+      const t = window.scrollY * 0.02;
+      hud.style.transform = `rotate(${t}deg)`;
+    });
+  </script>
+</body>
+</html>
